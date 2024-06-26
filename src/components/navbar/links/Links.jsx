@@ -1,5 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
+import { NavLink } from '../navLink/NavLink';
+
+import styles from './Links.module.css';
 
 const links = [
 	{
@@ -22,11 +24,9 @@ const links = [
 
 export const Links = () => {
 	return (
-		<div>
-			{links.map(({ title, path }) => (
-				<Link key={title} href={path}>
-					{title}
-				</Link>
+		<div className={styles.links}>
+			{links.map((linkItem) => (
+				<NavLink item={linkItem} key={linkItem.title} />
 			))}
 		</div>
 	);
