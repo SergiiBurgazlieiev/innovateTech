@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100px;
+	color: #808080;
+}
+
+.logo {
+	font-weight: bold;
+}
+.text {
+	font-size: 12px;
+}

@@ -1,11 +1,14 @@
 import React from 'react';
+import Link from 'next/link';
 import { Links } from './links/Links';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
 	return (
 		<div className={styles.container}>
-			<div className={styles.logo}>Logo</div>
+			<Link href='/' className={styles.logo}>
+				InnovateTech
+			</Link>
 			<div>
 				<Links />
 			</div>
