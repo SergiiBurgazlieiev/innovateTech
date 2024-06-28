@@ -47,3 +47,7 @@
 	background-color: var(--btn);
 	color: var(--text);
 }
+
+.heroImage {
+	object-fit: contain;
+}
