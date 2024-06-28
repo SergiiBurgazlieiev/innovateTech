@@ -20,7 +20,7 @@ export const PostCard = () => {
 			<div className={styles.bottom}>
 				<h1 className={styles.title}>Title</h1>
 				<p className={styles.desc}>Hello There!!!</p>
-				<Link className={styles.link} href='/glob/post'>
+				<Link className={styles.link} href='/blog/post'>
 					READ MORE
 				</Link>
 			</div>

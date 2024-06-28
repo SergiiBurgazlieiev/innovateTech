@@ -47,3 +47,19 @@
 .img {
 	object-fit: contain;
 }
+
+@media screen and (max-width: 768px) {
+	.container {
+		margin-top: 100px;
+		overflow: hidden;
+		overflow-y: scroll;
+	}
+	.container,
+	.boxes {
+		flex-direction: column;
+		text-align: center;
+	}
+	.boxes {
+		gap: 50px;
+	}
+}

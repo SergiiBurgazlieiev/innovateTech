@@ -9,3 +9,15 @@
 	font-size: 30px;
 	font-weight: bold;
 }
+
+@media screen and (max-width: 768px) {
+	.container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: var(--bg);
+		width: 100%;
+		z-index: 100;
+		padding: 0 20px;
+	}
+}
