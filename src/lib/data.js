@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from 'next/cache';
 import { Post, User } from './models';
 import { connectToDB } from './db';
 
@@ -35,7 +36,9 @@ export const getUsers = async () => {
 };
 
 export const getUser = async (userId) => {
-	console.log(userId);
+	// noStore() used to declaratively opt out of static rendering
+	// and indicate a particular component should not be cached.
+	noStore();
 	try {
 		connectToDB();
 		const user = User.findById(userId);
