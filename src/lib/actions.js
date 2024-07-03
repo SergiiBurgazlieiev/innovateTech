@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { connectToDB } from './db';
-import { Post } from './models';
+import { Post, User } from './models';
 import { redirect } from 'next/navigation';
 import { signIn, signOut } from './auth';
 
@@ -45,4 +45,36 @@ export const logIn = async (e) => {
 
 export const logOut = async (e) => {
 	await signOut();
+};
+
+export const signUpUser = async (formData) => {
+	const { username, email, password, passwordRepeat, avatar } =
+		Object.fromEntries(formData);
+	if (password !== passwordRepeat) {
+		return 'Password does not match!';
+	}
+
+	try {
+		connectToDB();
+		const user = await User.findOne({ username });
+
+		if (user) {
+			return 'User already exists!';
+		}
+
+		const newUser = new User({
+			username,
+			email,
+			password,
+			avatar,
+		});
+
+		await User.save();
+		console.log(
+			`User with the user name: ${username} has been saved to the DB`
+		);
+	} catch (err) {
+		console.log(err);
+		throw new Error(err);
+	}
 };

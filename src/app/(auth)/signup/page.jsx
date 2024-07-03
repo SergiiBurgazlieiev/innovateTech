@@ -1,9 +1,10 @@
 import React from 'react';
+import { signUpUser } from '@/lib/actions';
 
 const SignUpPage = () => {
 	return (
-		<div>
-			<form>
+		<>
+			<form action={signUpUser}>
 				<input type='text' name='username' placeholder='Enter your username' />
 				<input type='email' name='email' placeholder='Enter your email' />
 				<input
@@ -18,7 +19,7 @@ const SignUpPage = () => {
 				/>
 				<button>SignUp</button>
 			</form>
-		</div>
+		</>
 	);
 };
 
