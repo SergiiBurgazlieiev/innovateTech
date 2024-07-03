@@ -4,6 +4,11 @@
 	gap: 10px;
 }
 
+.avatar {
+	object-fit: cover;
+	border-radius: 50%;
+}
+
 .author {
 	color: #808080;
 	font-weight: bold;
