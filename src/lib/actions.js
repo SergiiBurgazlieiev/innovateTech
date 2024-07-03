@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { connectToDB } from './db';
 import { Post } from './models';
 import { redirect } from 'next/navigation';
+import { signIn } from './auth';
 
 export const addPost = async (formData) => {
 	console.log(formData);
@@ -36,4 +37,8 @@ export const deletePost = async (formData) => {
 	}
 	revalidatePath('/blog');
 	redirect('/blog');
+};
+
+export const loginIn = async (e) => {
+	await signIn('github');
 };
