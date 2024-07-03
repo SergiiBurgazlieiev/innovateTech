@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema(
 			required: true,
 			min: 6,
 		},
-		img: {
+		avatar: {
 			type: String,
 		},
 		isAdmin: {

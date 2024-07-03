@@ -1,25 +1,47 @@
-//temp data
-
-const users = [
-	{ id: 1, name: 'Jane' },
-	{ id: 2, name: 'Sergii' },
-];
-
-const posts = [
-	{ id: 1, title: 'Post1', body: 'lorem', userId: 1 },
-	{ id: 2, title: 'Post2', body: 'lorem', userId: 2 },
-	{ id: 3, title: 'Post3', body: 'lorem', userId: 1 },
-	{ id: 4, title: 'Post4', body: 'lorem', userId: 2 },
-];
+import { Post, User } from './models';
+import { connectToDB } from './db';
 
 export const getPosts = async () => {
-	return posts;
+	try {
+		connectToDB();
+		const posts = await Post.find();
+		return posts;
+	} catch (err) {
+		console.log(err);
+		throw new Error('Failed to fetch posts');
+	}
 };
 
-export const getPost = async (id) => {
-	return posts.find((post) => post.id === parseInt(id));
+export const getPost = async (slug) => {
+	try {
+		connectToDB();
+		const post = Post.findOne({ slug });
+		return post;
+	} catch (err) {
+		console.log(err);
+		throw new Error('Failed to fetch a single post');
+	}
+};
+
+export const getUsers = async () => {
+	try {
+		connectToDB();
+		const users = User.find();
+		return users;
+	} catch (err) {
+		console.log(err);
+		throw new Error('Failed to fetch users');
+	}
 };
 
 export const getUser = async (userId) => {
-	return users.find((user) => user.id === parseInt(userId));
+	console.log(userId);
+	try {
+		connectToDB();
+		const user = User.findById(userId);
+		return user;
+	} catch (err) {
+		console.log(err);
+		throw new Error('Failed to fetch a user');
+	}
 };

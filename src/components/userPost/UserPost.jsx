@@ -1,30 +1,24 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from './userPost.module.css';
 import { getUser } from '@/lib/data';
 
-// FETCH DATA WITH AN API
-// const getUser = async (userId) => {
-// 	const res = await fetch(
-// 		`https://jsonplaceholder.typicode.com/users/${userId}`,
-// 		{ cache: 'no-store' }
-// 	);
-// 	if (!res.ok) {
-// 		throw new Error('Something went wrong!');
-// 	}
-// 	return res.json();
-// };
-
 export const UserPost = async ({ userId }) => {
-	// FETCH DATA WITH AN API
-	//const user = await getUser(userId);
-
-	// FETCH DATA WITHOUT AN API
-	const user = await getUser(userId);
+	const { avatar, username } = await getUser(userId);
 
 	return (
-		<div className={styles.container}>
-			<span className={styles.author}>Author</span>
-			<span className={styles.userName}>{user.name}</span>
-		</div>
+		<>
+			<Image
+				className={styles.avatar}
+				src={avatar ? avatar : '/noavatar.png'}
+				alt='Avatar image'
+				height={50}
+				width={50}
+			/>
+			<div className={styles.container}>
+				<span className={styles.author}>Author</span>
+				<span className={styles.userName}>{username}</span>
+			</div>
+		</>
 	);
 };
