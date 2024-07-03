@@ -48,6 +48,7 @@ export const logOut = async (e) => {
 };
 
 export const signUpUser = async (formData) => {
+	console.log(formData);
 	const { username, email, password, passwordRepeat, avatar } =
 		Object.fromEntries(formData);
 	if (password !== passwordRepeat) {
@@ -69,7 +70,7 @@ export const signUpUser = async (formData) => {
 			avatar,
 		});
 
-		await User.save();
+		await newUser.save();
 		console.log(
 			`User with the user name: ${username} has been saved to the DB`
 		);

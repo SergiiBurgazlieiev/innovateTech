@@ -15,8 +15,8 @@ const SignUpPage = () => {
 				/>
 				<input
 					type='password'
-					name='Enter your password again'
-					placeholder='passwordRepeat'
+					name='passwordRepeat'
+					placeholder='Enter your password again'
 				/>
 				<button>SignUp</button>
 			</form>
