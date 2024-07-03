@@ -5,7 +5,7 @@ import { connectToDB } from './db';
 import { Post, User } from './models';
 import { redirect } from 'next/navigation';
 import { signIn, signOut } from './auth';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export const addPost = async (formData) => {
 	console.log(formData);
@@ -40,7 +40,7 @@ export const deletePost = async (formData) => {
 	redirect('/blog');
 };
 
-export const logIn = async (e) => {
+export const logInWithGitHub = async (e) => {
 	await signIn('github');
 };
 
@@ -49,7 +49,6 @@ export const logOut = async (e) => {
 };
 
 export const signUpUser = async (formData) => {
-	console.log(formData);
 	const { username, email, password, passwordRepeat, avatar } =
 		Object.fromEntries(formData);
 	if (password !== passwordRepeat) {
@@ -81,5 +80,16 @@ export const signUpUser = async (formData) => {
 	} catch (err) {
 		console.log(err);
 		throw new Error(err);
+	}
+};
+
+export const logInWithUserCredentials = async (formData) => {
+	const { username, password } = Object.fromEntries(formData);
+
+	try {
+		await signIn('credentials', { username, password });
+	} catch (err) {
+		console.log(err);
+		return { error: 'Something went wrong!' };
 	}
 };
