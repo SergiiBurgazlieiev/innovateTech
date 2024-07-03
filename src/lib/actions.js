@@ -5,6 +5,7 @@ import { connectToDB } from './db';
 import { Post, User } from './models';
 import { redirect } from 'next/navigation';
 import { signIn, signOut } from './auth';
+import bcrypt from 'bcrypt';
 
 export const addPost = async (formData) => {
 	console.log(formData);
@@ -62,11 +63,14 @@ export const signUpUser = async (formData) => {
 		if (user) {
 			return 'User already exists!';
 		}
+		// hashing user's password
+		const salt = await bcrypt.genSalt(10);
+		const hashedPassword = await bcrypt.hash(password, salt);
 
 		const newUser = new User({
 			username,
 			email,
-			password,
+			password: hashedPassword,
 			avatar,
 		});
 
