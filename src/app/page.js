@@ -5,9 +5,9 @@ const Home = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.textContainer}>
-				<h1 className={styles.title}>Radiant Pulse Creative</h1>
+				<h1 className={styles.title}>Radiant Pulse Creative Agency</h1>
 				<p className={styles.desc}>
-					Welcome to Radiant Pulse Creative, a dynamic creative agency
+					Welcome to Radiant Pulse Creative Agency, a dynamic creative agency
 					specializing in innovative design, branding, and digital experiences.
 					We turn ideas into captivating realities that engage and inspire.
 				</p>
