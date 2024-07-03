@@ -1,10 +1,11 @@
 import React from 'react';
 import { signUpUser } from '@/lib/actions';
+import styles from './signup.module.css';
 
 const SignUpPage = () => {
 	return (
 		<>
-			<form action={signUpUser}>
+			<form className={styles.form} action={signUpUser}>
 				<input type='text' name='username' placeholder='Enter your username' />
 				<input type='email' name='email' placeholder='Enter your email' />
 				<input
