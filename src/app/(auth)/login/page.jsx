@@ -1,10 +1,10 @@
 import React from 'react';
-import { loginIn } from '@/lib/actions';
+import { logIn } from '@/lib/actions';
 
 const LoginPage = async () => {
 	return (
 		<div>
-			<form action={loginIn}>
+			<form action={logIn}>
 				<button>Login with GitHub</button>
 			</form>
 		</div>

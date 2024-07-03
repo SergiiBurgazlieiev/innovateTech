@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { NavLink } from '../navLink/NavLink';
+import { logOut } from '@/lib/actions';
 
 import styles from './Links.module.css';
 
@@ -24,12 +25,10 @@ const links = [
 	},
 ];
 
-// Temp for now
-const userSession = true;
-const isAdmin = true;
-
-export const Links = () => {
+export const Links = ({ session }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const isAdmin = session?.user?.isAdmin;
+	const isUser = session?.user;
 
 	const onMenuOpen = () => setIsOpen((isOpen) => !isOpen);
 
@@ -40,10 +39,12 @@ export const Links = () => {
 					<NavLink item={linkItem} key={linkItem.title} />
 				))}
 
-				{userSession ? (
+				{isUser ? (
 					<>
 						{isAdmin && <NavLink item={{ title: 'Admin', path: '/admin' }} />}
-						<button className={styles.logout}>Logout</button>
+						<form action={logOut}>
+							<button className={styles.logout}>Logout</button>
+						</form>
 					</>
 				) : (
 					<NavLink item={{ title: 'Login', path: '/login' }} />
