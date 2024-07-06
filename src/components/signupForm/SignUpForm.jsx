@@ -30,7 +30,7 @@ export const SignUpForm = () => {
 				placeholder='Enter your password again'
 			/>
 			<button>SignUp</button>
-			{state?.message}
+			{state?.error}
 			<Link href='/login'>
 				Have an Account? <b>Login</b>
 			</Link>

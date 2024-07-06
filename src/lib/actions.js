@@ -53,7 +53,7 @@ export const signUpUser = async (previousState, formData) => {
 		Object.fromEntries(formData);
 
 	if (password !== passwordRepeat) {
-		return { message: 'Password does not match!' };
+		return { error: 'Password does not match!' };
 	}
 
 	try {
@@ -61,7 +61,7 @@ export const signUpUser = async (previousState, formData) => {
 		const user = await User.findOne({ username });
 
 		if (user) {
-			return { message: 'Username already exists!' };
+			return { error: 'Username already exists!' };
 		}
 		// hashing user's password
 		const salt = await bcrypt.genSalt(10);
@@ -85,13 +85,12 @@ export const signUpUser = async (previousState, formData) => {
 	}
 };
 
-export const logInWithUserCredentials = async (formData) => {
+export const logInWithUserCredentials = async (previousState, formData) => {
 	const { username, password } = Object.fromEntries(formData);
 
 	try {
 		await signIn('credentials', { username, password });
 	} catch (err) {
-		console.log(err);
-		return { error: 'Something went wrong!' };
+		throw err;
 	}
 };

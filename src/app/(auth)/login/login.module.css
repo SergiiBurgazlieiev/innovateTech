@@ -1,0 +1,33 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.wrapper {
+	width: 500px;
+	background-color: var(--bgSoft);
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 30px;
+	border-radius: 5px;
+}
+
+.github {
+	width: 100%;
+	padding: 20px;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+	.container {
+		margin: 100px auto;
+		width: 100%;
+	}
+	.wrapper {
+		width: 100%;
+		gap: 30px;
+	}
+}
