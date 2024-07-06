@@ -48,11 +48,12 @@ export const logOut = async (e) => {
 	await signOut();
 };
 
-export const signUpUser = async (formData) => {
+export const signUpUser = async (previousState, formData) => {
 	const { username, email, password, passwordRepeat, avatar } =
 		Object.fromEntries(formData);
+
 	if (password !== passwordRepeat) {
-		return 'Password does not match!';
+		return { message: 'Password does not match!' };
 	}
 
 	try {
@@ -60,7 +61,7 @@ export const signUpUser = async (formData) => {
 		const user = await User.findOne({ username });
 
 		if (user) {
-			return 'User already exists!';
+			return { message: 'Username already exists!' };
 		}
 		// hashing user's password
 		const salt = await bcrypt.genSalt(10);
@@ -77,6 +78,7 @@ export const signUpUser = async (formData) => {
 		console.log(
 			`User with the user name: ${username} has been saved to the DB`
 		);
+		return { success: true };
 	} catch (err) {
 		console.log(err);
 		throw new Error(err);

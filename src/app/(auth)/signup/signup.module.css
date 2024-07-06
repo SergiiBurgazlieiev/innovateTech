@@ -1,33 +1,27 @@
-.form {
-	width: 50%;
-	margin: 0 auto;
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.wrapper {
+	width: 500px;
+	background-color: var(--bgSoft);
+	padding: 1rem;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 	gap: 30px;
-}
-
-.form input {
-	padding: 20px;
-	background-color: var(--bg);
-	color: var(--textColor);
-	border: none;
-	border-radius: 5px;
-}
-
-.form button {
-	padding: 20px;
-	cursor: pointer;
-	background-color: var(--btn);
-	color: var(--textColor);
-	font-weight: bold;
-	border: none;
 	border-radius: 5px;
 }
 
 @media screen and (max-width: 768px) {
-	.form {
+	.container {
 		margin: 100px auto;
 		width: 100%;
+	}
+	.wrapper {
+		width: 100%;
+		gap: 30px;
 	}
 }
