@@ -7,7 +7,8 @@ import { redirect } from 'next/navigation';
 import { signIn, signOut } from './auth';
 import bcrypt from 'bcryptjs';
 
-export const addPost = async (formData) => {
+// ADD POST ACTION
+export const addPost = async (prevState, formData) => {
 	console.log(formData);
 	const { title, desc, userId, slug } = Object.fromEntries(formData);
 	try {
@@ -19,25 +20,59 @@ export const addPost = async (formData) => {
 			slug,
 		});
 		await newPost.save();
+		revalidatePath('/blog');
+		revalidatePath('/admin');
 	} catch (err) {
 		console.log(err);
 		throw new Error(err);
 	}
-	revalidatePath('/blog');
-	redirect('/blog');
 };
 
-export const deletePost = async (formData) => {
+// ADD USER ACTION
+export const addUser = async (prevState, formData) => {
+	const { username, email, password, avatar } = Object.fromEntries(formData);
+	try {
+		connectToDB();
+		const newUser = new User({
+			username,
+			email,
+			password,
+			avatar,
+		});
+		await newUser.save();
+		revalidatePath('/admin');
+	} catch (err) {
+		console.log(err);
+		return { error: 'Something went wrong! The user was not created' };
+	}
+};
+
+// DELETE POST ACTION
+export const deletePost = async (prevState, formData) => {
 	const id = formData.get('id');
 	try {
 		connectToDB();
 		await Post.findByIdAndDelete(id);
+		revalidatePath('/blog');
+		revalidatePath('/admin');
 	} catch (err) {
 		console.log(err);
 		throw new Error(err);
 	}
-	revalidatePath('/blog');
-	redirect('/blog');
+};
+
+// DELETE USER ACTION
+export const deleteUser = async (prevState, formData) => {
+	const id = formData.get('id');
+	try {
+		connectToDB();
+		await Post.deleteMany({ userId: id });
+		await User.findByIdAndDelete(id);
+		revalidatePath('/admin');
+	} catch (err) {
+		console.log(err);
+		return { error: 'Something went wrong! User could not be deleted.' };
+	}
 };
 
 export const logInWithGitHub = async (e) => {
