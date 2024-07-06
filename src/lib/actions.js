@@ -3,7 +3,6 @@
 import { revalidatePath } from 'next/cache';
 import { connectToDB } from './db';
 import { Post, User } from './models';
-import { redirect } from 'next/navigation';
 import { signIn, signOut } from './auth';
 import bcrypt from 'bcryptjs';
 
@@ -20,11 +19,12 @@ export const addPost = async (prevState, formData) => {
 			slug,
 		});
 		await newPost.save();
+		console.log('Post has been saved to DB');
 		revalidatePath('/blog');
 		revalidatePath('/admin');
 	} catch (err) {
 		console.log(err);
-		throw new Error(err);
+		return { error: 'Something went wrong!' };
 	}
 };
 
@@ -40,6 +40,7 @@ export const addUser = async (prevState, formData) => {
 			avatar,
 		});
 		await newUser.save();
+		console.log('User has been saved to DB');
 		revalidatePath('/admin');
 	} catch (err) {
 		console.log(err);
@@ -48,26 +49,28 @@ export const addUser = async (prevState, formData) => {
 };
 
 // DELETE POST ACTION
-export const deletePost = async (prevState, formData) => {
+export const deletePost = async (formData) => {
 	const id = formData.get('id');
 	try {
 		connectToDB();
 		await Post.findByIdAndDelete(id);
+		console.log('Post has been deleted from DB');
 		revalidatePath('/blog');
 		revalidatePath('/admin');
 	} catch (err) {
 		console.log(err);
-		throw new Error(err);
+		return { error: 'Something went wrong!' };
 	}
 };
 
 // DELETE USER ACTION
-export const deleteUser = async (prevState, formData) => {
+export const deleteUser = async (formData) => {
 	const id = formData.get('id');
 	try {
 		connectToDB();
 		await Post.deleteMany({ userId: id });
 		await User.findByIdAndDelete(id);
+		console.log('User has been deleted from DB');
 		revalidatePath('/admin');
 	} catch (err) {
 		console.log(err);
