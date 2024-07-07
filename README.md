@@ -1,4 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Next.js Features I covered While Building This App
+
+- Folder Structure
+- [Next.js Routing](https://nextjs.org/docs/app/building-your-application/routing)
+- [Layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts)
+- [File Conventions](https://nextjs.org/docs/app/api-reference/file-conventions)
+- [Image optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
+- [Rendering (Server vs Client components)](https://nextjs.org/docs/app/building-your-application/rendering)
+- [Hydration Error and Solution](#hydration-error-and-solution)
+- [Navigation(Links, useRouter, useParams, page params, etc.)](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating)
+- [Data fetching](https://nextjs.org/docs/app/building-your-application/data-fetching)
+- [Streaming with Suspense](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
+- [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations)
+- [Static and Dynamic SEO](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
+- [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) vs [API Routes](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+- [Authentication with Next-Auth & Server Actions](https://next-auth.js.org/)
+- [Auth Social Media Sign in with Server Actions](https://next-auth.js.org/providers)
+- [Next Auth with User Credentials Tutorial (Email & Password Login)](https://next-auth.js.org/providers/credentials)
+- [useFormState (useActionState - React Canary) Hook](https://react.dev/reference/react/useActionState)
+- [next-auth middleware - how to protect routes](https://nextjs.org/docs/app/building-your-application/routing/middleware)
 
 ## Getting Started
 
@@ -35,7 +54,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## Rendering - hydration problem/error and how to prevent it.
+## Hydration Error And Solution
 
 There are three possible solutions to prevent the next.js hydration problem:
 

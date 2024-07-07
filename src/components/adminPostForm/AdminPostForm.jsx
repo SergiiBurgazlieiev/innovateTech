@@ -1,4 +1,5 @@
 'use client';
+//import { useActionState } from 'react'; // react canary, we should wait until next.js is going to release update.
 import { useFormState } from 'react-dom';
 import { addPost } from '@/lib/actions';
 import styles from './AdminPostForm.module.css';
