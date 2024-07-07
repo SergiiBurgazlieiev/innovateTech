@@ -1,10 +1,15 @@
 'use client';
-import React, { useEffect } from 'react';
+// External modules
+import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
-import { signUpUser } from '@/lib/actions';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import styles from './SignUpForm.module.css';
+
+//Internal modules
+import { signUpUser } from '@/lib/actions';
+import { Input } from '../formElements/input/Input';
+import { Form } from '../formElements/form/Form';
+import { Button } from '../formElements/button/Button';
 
 export const SignUpForm = () => {
 	const [state, formAction] = useFormState(signUpUser, undefined);
@@ -16,24 +21,24 @@ export const SignUpForm = () => {
 	}, [state?.success, router]);
 
 	return (
-		<form className={styles.form} action={formAction}>
-			<input type='text' name='username' placeholder='Enter your username' />
-			<input type='email' name='email' placeholder='Enter your email' />
-			<input
+		<Form action={formAction}>
+			<Input type='text' name='username' placeholder='Enter your username' />
+			<Input type='email' name='email' placeholder='Enter your email' />
+			<Input
 				type='password'
 				name='password'
 				placeholder='Enter your password'
 			/>
-			<input
+			<Input
 				type='password'
 				name='passwordRepeat'
 				placeholder='Enter your password again'
 			/>
-			<button>SignUp</button>
+			<Button>SignUp</Button>
 			{state?.error}
 			<Link href='/login'>
 				Have an Account? <b>Login</b>
 			</Link>
-		</form>
+		</Form>
 	);
 };

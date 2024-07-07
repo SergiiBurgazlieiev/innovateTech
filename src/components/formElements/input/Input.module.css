@@ -1,0 +1,7 @@
+.inputField {
+	padding: 20px;
+	background-color: var(--bg);
+	color: var(--textColor);
+	border: none;
+	border-radius: 5px;
+}
