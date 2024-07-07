@@ -1,5 +1,8 @@
-import React from 'react';
 import Image from 'next/image';
+
+import { Form } from '@/components/formElements/form/Form';
+import { Input } from '@/components/formElements/input/Input';
+import { Button } from '@/components/formElements/button/Button';
 import styles from './contact.module.css';
 
 export const metadata = {
@@ -19,19 +22,18 @@ const ContactPage = () => {
 				/>
 			</div>
 			<div className={styles.formContainer}>
-				<form action='' className={styles.form}>
-					<input type='text' placeholder='Name and Surname' name='name' id='' />
-					<input type='email' placeholder='Email Address' name='email' id='' />
-					<input type='phone' placeholder='Phone Number' name='phone' id='' />
-					<textarea
-						name='message'
+				<Form action=''>
+					<Input type='text' placeholder='Name and Surname' name='name' id='' />
+					<Input type='email' placeholder='Email Address' name='email' id='' />
+					<Input type='phone' placeholder='Phone Number' name='phone' id='' />
+					<Input
 						id=''
-						cols='30'
-						rows='10'
-						placeholder='Message'
+						type='textarea'
+						name='message'
+						placeholder='Enter your message'
 					/>
-					<button>Send</button>
-				</form>
+					<Button>Send</Button>
+				</Form>
 			</div>
 		</div>
 	);
